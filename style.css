@@ -1,0 +1,139 @@
+/* --- Aetherium OS: Terminal & Drafting Theme --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=JetBrains+Mono&family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --bg-dark: #050505;
+    --bg-grid: rgba(255, 255, 255, 0.03); /* Subtle grid line color */
+    --neon-cyan: #00f3ff;
+    --neon-purple: #bc13fe;
+    --text-main: #ffffff;
+    --text-dim: #777777;
+    --card-bg: #0a0a0a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* 1. THE BACKGROUND GRID */
+body {
+    background-color: var(--bg-dark);
+    /* Creates a 30px x 30px drafting grid */
+    background-image: 
+        linear-gradient(var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* 2. THE "WOW" TITLE */
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 10vw, 5.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 12px;
+    background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.3));
+    margin-bottom: 0.5rem;
+}
+
+.hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 3. SHARP "SCANLINE" CARDS */
+section {
+    max-width: 1000px;
+    margin: 3rem auto;
+    background: var(--card-bg);
+    border: 1px solid #1a1a1a;
+    border-radius: 4px; /* Sharp 4px corners */
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* The Glowing Purple Spot (Top-Right) */
+section::after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: var(--neon-purple);
+    filter: blur(50px);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Section Headlines */
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-cyan);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #222;
+    padding-bottom: 0.5rem;
+}
+
+/* 4. HOVER MOTION FOR COMMANDS */
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-left: 2px solid #222;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Professional motion curve */
+}
+
+/* Slide to right effect */
+li:hover {
+    border-left-color: var(--neon-cyan);
+    background: rgba(0, 243, 255, 0.03);
+    transform: translateX(15px); /* The "alive" motion */
+}
+
+b, strong {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-cyan);
+    font-size: 1.1rem;
+    text-transform: lowercase;
+}
+
+/* Footer / Contact */
+footer {
+    text-align: center;
+    padding: 4rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+}
+
+.btn-disabled {
+    display: inline-block;
+    border: 1px dashed #444;
+    padding: 1rem 2rem;
+    color: #444;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 1rem;
+}
