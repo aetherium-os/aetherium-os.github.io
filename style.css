@@ -1,141 +1,153 @@
+
 :root {
     --neon-cyan: #00f3ff;
     --neon-purple: #bc13fe;
-    --bg-dark: #0a0a0c;
-    --card-bg: rgba(20, 20, 25, 0.8);
-    --border-color: #222;
+    --bg-dark: #020205;
+    --card-bg: rgba(6, 6, 10, 0.6);
 }
 
 body {
     background-color: var(--bg-dark);
-    color: #e0e0e0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #f0f0f0;
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* THE COLORED TITLE YOU WANTED */
+/* --- THE SEXY VISUAL ENGINE --- */
+.visual-engine {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
+}
+
+/* Moving Nebula Clouds */
+.nebula-1, .nebula-2 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    animation: nebula-float 20s infinite alternate;
+}
+
+.nebula-1 {
+    background: var(--neon-cyan);
+    top: -100px;
+    left: -100px;
+}
+
+.nebula-2 {
+    background: var(--neon-purple);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes nebula-float {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(100px, 50px) scale(1.2); }
+}
+
+/* Sophisticated Perspective Grid */
+.grid-perspective {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(188, 19, 254, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+    transform: perspective(1000px) rotateX(45deg) translateY(-10%);
+}
+
+/* Moving Scan Line */
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    opacity: 0.2;
+    top: -10%;
+    animation: scan-move 8s linear infinite;
+}
+
+@keyframes scan-move {
+    0% { top: -10%; }
+    100% { top: 110%; }
+}
+
+/* --- TITLE STYLING --- */
 .main-title {
-    font-size: 5rem;
+    font-size: clamp(3rem, 12vw, 7rem);
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 0;
+    margin-top: 100px;
     text-transform: uppercase;
-    letter-spacing: 10px;
     font-weight: 900;
-    background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+    letter-spacing: 20px;
+    background: linear-gradient(90deg, #fff, var(--neon-cyan), var(--neon-purple), #fff);
+    background-size: 300% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.4));
+    animation: title-flow 8s linear infinite;
 }
 
-.glitch-subtitle {
-    text-align: center;
-    color: var(--neon-cyan);
-    font-family: monospace;
-    letter-spacing: 3px;
-    margin-bottom: 60px;
-    opacity: 0.8;
+@keyframes title-flow {
+    to { background-position: 300% center; }
 }
 
-main {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+/* --- HOVER COMMAND ANIMATION --- */
+.hover-command {
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+    border-left: 2px solid transparent;
 }
 
-/* Glassmorphism Cards */
+.hover-command:hover {
+    transform: translateX(20px);
+    background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
+    border-left: 2px solid var(--neon-cyan);
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* --- CARD DESIGN --- */
 .card {
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 40px;
     margin-bottom: 30px;
+    backdrop-filter: blur(20px);
     position: relative;
-    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
-.card h2 {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    border-bottom: 1px solid var(--neon-purple);
-    display: inline-block;
-    margin-bottom: 20px;
+.card-glow {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(0, 243, 255, 0.05), transparent 50%);
+    pointer-events: none;
 }
 
-/* Grid for Profiles */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: slide-up 1s forwards cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+@keyframes slide-up {
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-/* Terminal List Styling */
-.terminal-list {
-    list-style: none;
-    padding: 0;
-}
-
-.terminal-list li {
-    background: rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px;
-    padding: 10px;
-    border-left: 3px solid var(--neon-cyan);
-    display: flex;
-    flex-direction: column;
-}
-
-.term-cmd {
-    font-family: 'Courier New', monospace;
-    color: var(--neon-cyan);
-    font-weight: bold;
-}
-
-.term-cmd + span {
-    font-size: 0.85rem;
-    color: #aaa;
-}
-
-/* Pulse Effect for Status */
-.pulse {
-    color: var(--neon-purple);
-    font-weight: bold;
-    animation: pulse-animation 2s infinite;
-}
-
-@keyframes pulse-animation {
-    0% { opacity: 1; }
-    50% { opacity: 0.3; }
-    100% { opacity: 1; }
-}
-
-.email-btn {
-    display: inline-block;
-    margin-top: 15px;
-    color: var(--neon-cyan);
-    text-decoration: none;
-    border: 1px solid var(--neon-cyan);
-    padding: 10px 20px;
-    transition: 0.3s;
-}
-
-.email-btn:hover {
-    background: var(--neon-cyan);
-    color: #000;
-    box-shadow: 0 0 20px var(--neon-cyan);
-}
-
-footer {
-    text-align: center;
-    padding: 50px;
-    font-size: 0.8rem;
-    color: #555;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .grid-container { grid-template-columns: 1fr; }
-    .main-title { font-size: 2.5rem; letter-spacing: 4px; }
+    gap: 30px;
 }
