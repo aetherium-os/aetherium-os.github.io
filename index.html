@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetherium OS | The Zenith of Linux that uses the philosophy os using custom cli caommands that automate your tasks.</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div class="cursor-glow"></div>
+
+    <header class="parallax-header">
+        <div class="hero-layer" data-speed="2">
+            <h1 id="hero-title">Aetherium</h1>
+            <p class="subtitle">The Adaptive Debian(sid) based Distribution</p>
+        </div>
+    </header>
+
+    <main class="zenith-container">
+        <section id="core" class="bento-grid">
+            <div class="bento-item main-feature">
+                <h2>Core Engine</h2>
+                <p>Built on a rock-solid Debian-sid based foundation with modular architecture.</p>
+            </div>
+            <div class="bento-item">
+                <b>Aether Forge</b>
+                <p>The Custom Aetherium linux installer.</p>
+            </div>
+            <div class="bento-item">
+                <b>Aether Time</b>
+                <p>Atomic Btrfs rollbacks.</p>
+            </div>
+        </section>
+
+        <section class="profile-showcase">
+            <div class="card gaming">
+                <div class="card-glow"></div>
+                <h2>Gaming</h2>
+                <ul class="cmd-list">
+                    <li><code>aether boost</code> Performance optimization</li>
+                    <li><code>aether pulse</code> Real-time telemetry</li>
+                    <li><code>aether arena</code> Unified game hub launcher</li>
+                    <li><code>aether doctor</code> Diagnoses the gaming environment</li>
+                </ul>
+            </div>
+
+            <div class="card pentesting">
+                <div class="card-glow"></div>
+                <h2>Security</h2>
+                <ul class="cmd-list">
+                    <li><code>aether recon</code> Automated recconaissance</li>
+                    <li><code>aether breach</code> Exploitation assistant</li>
+                    <li><code>aether vault</code> Encrypted workspace</li>
+                    <li><code>aether scan</code> Performs Vulnerabilty scanning in targets</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="download-zone">
+            <a href="#" class="god-btn"><span>Coming Soon</span></a>
+            <p class="contact">adityaprakashsarangi4@gmail.com</p>
+        </section>
+    </main>
+
+    <script>
+        // Mouse Tracking Parallax Effect
+        document.addEventListener("mousemove", (e) => {
+            const title = document.getElementById('hero-title');
+            const x = (window.innerWidth / 2 - e.pageX) / 25;
+            const y = (window.innerHeight / 2 - e.pageY) / 25;
+            title.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            
+            const glow = document.querySelector('.cursor-glow');
+            glow.style.left = e.pageX + 'px';
+            glow.style.top = e.pageY + 'px';
+        });
+    </script>
+</body>
+</html>
